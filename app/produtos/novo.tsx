@@ -1,8 +1,9 @@
 
 import { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, SafeAreaView, KeyboardAvoidingView, Platform, ActivityIndicator, KeyboardTypeOptions } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, Platform, ActivityIndicator, KeyboardTypeOptions } from 'react-native';
 import { useRouter } from 'expo-router';
 import { X } from 'lucide-react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useProductForm } from '@/context/ProductFormContext';
 import { useUser } from '@/hooks/useUser';

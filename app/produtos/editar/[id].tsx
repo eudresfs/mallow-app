@@ -1,8 +1,9 @@
 
 import { useState, useEffect, useMemo } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, SafeAreaView, KeyboardAvoidingView, Platform, ActivityIndicator, ScrollView, KeyboardTypeOptions } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, Platform, ActivityIndicator, ScrollView, KeyboardTypeOptions } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { X, Save, PlusCircle, Trash2, Search } from 'lucide-react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { getProdutoById, getInsumos, Insumo, updateProduto, Produto, InsumoProduto } from '@/services/database';
 import { useUser } from '@/hooks/useUser';

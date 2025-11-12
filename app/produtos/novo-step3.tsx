@@ -1,8 +1,9 @@
 
 import { useMemo, useState } from 'react';
-import { View, Text, TouchableOpacity, Alert, SafeAreaView, ActivityIndicator, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, ActivityIndicator, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { ArrowLeft, X, CheckCircle } from 'lucide-react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useProductForm } from '@/context/ProductFormContext';
 import { useUser } from '@/hooks/useUser';

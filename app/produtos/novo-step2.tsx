@@ -1,7 +1,8 @@
 
 import { useState, useCallback, useMemo } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, SafeAreaView, KeyboardAvoidingView, Platform, ActivityIndicator, FlatList } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, Platform, ActivityIndicator, FlatList } from 'react-native';
 import { useRouter, useFocusEffect } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ArrowLeft, X, PlusCircle, Trash2, Search } from 'lucide-react-native';
 
 import { useProductForm } from '@/context/ProductFormContext';

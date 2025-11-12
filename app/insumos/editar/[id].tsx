@@ -1,8 +1,9 @@
 
 import { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, SafeAreaView, KeyboardAvoidingView, Platform, ActivityIndicator, ScrollView, KeyboardTypeOptions } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, Platform, ActivityIndicator, ScrollView, KeyboardTypeOptions } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { X, Save } from 'lucide-react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { getInsumoById, updateInsumo, Insumo } from '@/services/database';
 import { useUser } from '@/hooks/useUser';
