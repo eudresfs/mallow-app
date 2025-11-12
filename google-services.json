@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "670260238241",
+    "project_id": "mallow-d4f06",
+    "storage_bucket": "mallow-d4f06.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670260238241:android:40123b69957eb6d8be5de0",
+        "android_client_info": {
+          "package_name": "com.mallow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpaNLnB7zc78LtVM8ScQk9jR4CZMYqku0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

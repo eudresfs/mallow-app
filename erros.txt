@@ -1,0 +1,32 @@
+app/produtos/editar/[id].tsx(178,71): error TS2339: Property 'nome' does not exist on type 'InsumoProduto'.
+app/produtos/editar/[id].tsx(181,68): error TS2339: Property 'unidade_compra' does not exist on type 'InsumoProduto'.
+app/produtos/novo-step2.tsx(5,10): error TS2305: Module '"nativewind"' has no exported member 'styled'.
+app/produtos/novo-step2.tsx(22,23): error TS7031: Binding element 'text' implicitly has an 'any' type.
+app/produtos/novo-step2.tsx(22,29): error TS7031: Binding element 'onPress' implicitly has an 'any' type.
+app/produtos/novo-step2.tsx(55,60): error TS2353: Object literal may only specify known properties, and 'nome' does not exist in type 'InsumoProduto'.
+app/produtos/novo-step2.tsx(58,33): error TS7006: Parameter 'insumoId' implicitly has an 'any' type.
+app/produtos/novo-step2.tsx(58,43): error TS7006: Parameter 'quantity' implicitly has an 'any' type.
+app/produtos/novo-step2.tsx(112,28): error TS7006: Parameter 'item' implicitly has an 'any' type.
+app/produtos/novo-step2.tsx(116,28): error TS7031: Binding element 'item' implicitly has an 'any' type.
+app/produtos/novo-step2.tsx(126,38): error TS7006: Parameter 'text' implicitly has an 'any' type.
+app/produtos/novo-step2.tsx(148,30): error TS7006: Parameter 'item' implicitly has an 'any' type.
+app/produtos/novo-step2.tsx(149,30): error TS7031: Binding element 'item' implicitly has an 'any' type.
+app/produtos/novo-step3.tsx(5,10): error TS2305: Module '"nativewind"' has no exported member 'styled'.
+app/produtos/novo-step3.tsx(21,23): error TS7031: Binding element 'text' implicitly has an 'any' type.
+app/produtos/novo-step3.tsx(21,29): error TS7031: Binding element 'onPress' implicitly has an 'any' type.
+app/produtos/novo-step3.tsx(31,20): error TS7031: Binding element 'label' implicitly has an 'any' type.
+app/produtos/novo-step3.tsx(31,27): error TS7031: Binding element 'value' implicitly has an 'any' type.
+app/produtos/novo-step3.tsx(123,71): error TS2339: Property 'nome' does not exist on type 'InsumoProduto'.
+app/produtos/novo-step3.tsx(123,177): error TS2339: Property 'unidade_compra' does not exist on type 'InsumoProduto'.
+app/produtos/novo.tsx(5,10): error TS2305: Module '"nativewind"' has no exported member 'styled'.
+app/produtos/novo.tsx(19,22): error TS7031: Binding element 'label' implicitly has an 'any' type.
+app/produtos/novo.tsx(19,29): error TS7031: Binding element 'value' implicitly has an 'any' type.
+app/produtos/novo.tsx(19,36): error TS7031: Binding element 'onChangeText' implicitly has an 'any' type.
+app/produtos/novo.tsx(19,50): error TS7031: Binding element 'placeholder' implicitly has an 'any' type.
+app/produtos/novo.tsx(36,23): error TS7031: Binding element 'text' implicitly has an 'any' type.
+app/produtos/novo.tsx(36,29): error TS7031: Binding element 'onPress' implicitly has an 'any' type.
+components/FabMenu.tsx(5,10): error TS2305: Module '"nativewind"' has no exported member 'styled'.
+components/FabMenu.tsx(51,12): error TS2322: Type '{ children: Element[]; key: string; style: ({ position: "absolute"; right: number; bottom: number; flexDirection: "row"; alignItems: "center"; } | { transform: ({ scale: number; translateY?: undefined; } | { ...; })[]; opacity: number; })[]; onPress: () => void; className: string; }' is not assignable to type 'IntrinsicAttributes & RestProps<object> & AnimatedStyleProps<object> & LayoutProps & { animatedProps?: AddArrayPropertyType<...> | undefined; }'.
+  Property 'children' does not exist on type 'IntrinsicAttributes & RestProps<object> & AnimatedStyleProps<object> & LayoutProps & { animatedProps?: AddArrayPropertyType<...> | undefined; }'.
+components/FabMenu.tsx(71,10): error TS2322: Type '{ children: Element; onPress: () => void; className: string; style: false | { backgroundColor: string; }; }' is not assignable to type 'IntrinsicAttributes & RestProps<object> & AnimatedStyleProps<object> & LayoutProps & { animatedProps?: AddArrayPropertyType<...> | undefined; }'.
+  Property 'children' does not exist on type 'IntrinsicAttributes & RestProps<object> & AnimatedStyleProps<object> & LayoutProps & { animatedProps?: AddArrayPropertyType<...> | undefined; }'.
