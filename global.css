@@ -1,3 +1,28 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import 'uniwind';
+
+@layer theme {
+  :root {
+    /* Light theme (default) */
+    @variant light {
+      --color-primary: #8A2BE2;
+      --color-secondary: #E9D5FF;
+      --color-background: #FFFFFF;
+      --color-card: #F9FAFB;
+      --color-muted-foreground: #6B7280;
+      --color-foreground: #000000;
+      --color-border: #E5E7EB;
+    }
+
+    /* Dark theme */
+    @variant dark {
+      --color-primary: #A855F7;
+      --color-secondary: #4C1D95;
+      --color-background: #000000;
+      --color-card: #1F2937;
+      --color-muted-foreground: #9CA3AF;
+      --color-foreground: #FFFFFF;
+      --color-border: #374151;
+    }
+  }
+}

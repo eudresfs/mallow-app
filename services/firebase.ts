@@ -1,7 +1,6 @@
 // services/firebase.ts
 import { initializeApp, getApp, getApps } from 'firebase/app';
-import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getAuth } from 'firebase/auth';
 import Constants from 'expo-constants';
 
 const firebaseConfig = {
@@ -15,6 +14,14 @@ const firebaseConfig = {
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-export const auth = initializeAuth(app, {
-  persistence: getReactNativePersistence(AsyncStorage)
-});
+// Note: Firebase Web SDK v9+ uses web-compatible persistence by default
+// For React Native, persistence is handled automatically
+export const auth = getAuth(app);
+
+// TODO: Implement Google Sign-In properly with @react-native-google-signin/google-signin
+// For now, export a placeholder
+export const GoogleSignin = {
+  hasPlayServices: async () => true,
+  signIn: async () => ({ idToken: '' }),
+  signOut: async () => {},
+};

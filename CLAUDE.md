@@ -2,7 +2,7 @@
 
 > **Last Updated**: 2025-11-13
 > **Project**: Mallow - Pricing Calculator for Brazilian Microentrepreneurs
-> **Tech Stack**: React Native + Expo + SQLite + Firebase + NativeWind v4
+> **Tech Stack**: React Native + Expo + SQLite + Firebase + Uniwind (Tailwind 4)
 
 ---
 
@@ -14,9 +14,10 @@
 4. [Core Concepts](#core-concepts)
 5. [Database Schema & Business Logic](#database-schema--business-logic)
 6. [Development Workflows](#development-workflows)
-7. [Key Conventions](#key-conventions)
-8. [Common Tasks](#common-tasks)
-9. [Troubleshooting](#troubleshooting)
+7. [Uniwind Styling System](#uniwind-styling-system)
+8. [Key Conventions](#key-conventions)
+9. [Common Tasks](#common-tasks)
+10. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -55,9 +56,10 @@
 
 ### Styling
 
-- **NativeWind v4**: 4.2.1 (Tailwind CSS for React Native)
-- **Tailwind CSS**: 3.4.18
+- **Uniwind**: 1.0.1 (Fast Tailwind bindings for React Native)
+- **Tailwind CSS**: 4.0.0 (Latest version)
 - **Icons**: Lucide React Native
+- **Theme System**: CSS Variables with light/dark themes
 
 ### State Management
 
@@ -141,10 +143,10 @@ mallow-app/
 └── Config Files
     ├── app.config.js            # Expo + Firebase config
     ├── tsconfig.json
-    ├── tailwind.config.js
-    ├── babel.config.js          # NativeWind preset
-    ├── metro.config.js
-    └── global.css               # Tailwind imports
+    ├── babel.config.js          # Expo preset
+    ├── metro.config.js          # Uniwind configuration
+    ├── global.css               # Uniwind + Tailwind + Themes
+    └── uniwind-types.d.ts       # Auto-generated TypeScript types
 ```
 
 ---
@@ -353,12 +355,17 @@ npm run lint
 
 ### Styling Components
 
-Use NativeWind v4 (Tailwind) only:
+Use Uniwind (Tailwind 4) only:
 
 ```tsx
 // ✅ Correct
 <View className="flex-1 bg-white p-4">
   <Text className="text-lg font-bold text-gray-800">Title</Text>
+</View>
+
+// ✅ Using CSS variables from theme
+<View className="bg-background p-4">
+  <Text className="text-foreground font-bold">Title</Text>
 </View>
 
 // ❌ Wrong - Don't use StyleSheet
@@ -372,9 +379,153 @@ Use NativeWind v4 (Tailwind) only:
 - Layout: `flex-1 flex-row items-center justify-between`
 - Spacing: `p-4 px-6 py-3 mb-4 gap-2`
 - Colors: `bg-primary text-white bg-gray-100`
+- CSS Variables: `bg-background text-foreground bg-card border-border`
 - Typography: `text-lg font-bold text-center`
 - Borders: `rounded-lg border border-gray-300`
 - Shadows: `shadow-sm shadow-md`
+- Theme-aware: `bg-white dark:bg-gray-900 text-gray-900 dark:text-white`
+
+---
+
+## Uniwind Styling System
+
+### What is Uniwind?
+
+Uniwind is the fastest Tailwind CSS bindings for React Native. It provides:
+
+- **Full Tailwind 4 support** with all utility classes
+- **Built-in theme system** with light/dark modes
+- **Platform selectors** (ios:, android:, web:, native:)
+- **CSS variables** for theme-aware styling
+- **Zero runtime overhead** - styles compiled at build time
+
+### Configuration
+
+**metro.config.js**:
+```javascript
+const { withUniwindConfig } = require('uniwind/metro');
+
+module.exports = withUniwindConfig(config, {
+  cssEntryFile: './global.css',
+  dtsFile: './uniwind-types.d.ts',
+});
+```
+
+**global.css**:
+```css
+@import 'tailwindcss';
+@import 'uniwind';
+
+@layer theme {
+  :root {
+    @variant light {
+      --color-primary: #8A2BE2;
+      --color-background: #FFFFFF;
+      --color-foreground: #000000;
+      /* ... more variables */
+    }
+
+    @variant dark {
+      --color-primary: #A855F7;
+      --color-background: #000000;
+      --color-foreground: #FFFFFF;
+      /* ... more variables */
+    }
+  }
+}
+```
+
+### Theme Variables
+
+The app uses CSS variables for theme-aware colors:
+
+| Variable | Light | Dark | Usage |
+|----------|-------|------|-------|
+| `--color-primary` | #8A2BE2 | #A855F7 | `bg-primary` |
+| `--color-secondary` | #E9D5FF | #4C1D95 | `bg-secondary` |
+| `--color-background` | #FFFFFF | #000000 | `bg-background` |
+| `--color-foreground` | #000000 | #FFFFFF | `text-foreground` |
+| `--color-card` | #F9FAFB | #1F2937 | `bg-card` |
+| `--color-border` | #E5E7EB | #374151 | `border-border` |
+| `--color-muted-foreground` | #6B7280 | #9CA3AF | `text-muted-foreground` |
+
+### Platform Selectors
+
+Apply platform-specific styles:
+
+```tsx
+<View className="ios:pt-12 android:pt-6 web:pt-4" />
+<View className="native:bg-blue-500 web:bg-gray-500" />
+```
+
+- `ios:` - iOS only
+- `android:` - Android only
+- `web:` - Web only
+- `native:` - Both iOS and Android (shorthand)
+
+### Theme Switching
+
+Uniwind automatically manages themes:
+
+```typescript
+import { Uniwind } from 'uniwind';
+
+// Switch to dark theme
+Uniwind.setTheme('dark');
+
+// Switch to light theme
+Uniwind.setTheme('light');
+
+// Follow system theme
+Uniwind.setTheme('system');
+```
+
+### Using className Props
+
+All React Native components support the `className` prop:
+
+```tsx
+// View, Text, ScrollView, etc.
+<View className="flex-1 bg-background p-4" />
+<Text className="text-foreground text-lg" />
+<ScrollView contentContainerClassName="p-4 gap-2" />
+
+// For color props, use accent- prefix
+<ActivityIndicator
+  className="m-4"
+  colorClassName="accent-primary"
+/>
+
+<TextInput
+  className="border border-border rounded p-2"
+  placeholderTextColorClassName="accent-muted-foreground"
+/>
+```
+
+### Styling Convention
+
+<Info>
+  **For `style` props:** Use regular Tailwind classes directly (e.g., `className="p-4"`).
+
+  **For non-style props** (like `color`): Use the `accent-` prefix (e.g., `colorClassName="accent-blue-500"`).
+</Info>
+
+### TypeScript Support
+
+Uniwind auto-generates type definitions in `uniwind-types.d.ts`. This file is regenerated when Metro starts and provides full autocomplete for:
+
+- `className` props on all React Native components
+- Special className variants (contentContainerClassName, etc.)
+- Color className props (colorClassName, tintColorClassName, etc.)
+
+**Do not edit this file manually** - it's auto-generated.
+
+### Important Notes
+
+- **No tailwind.config.js**: Theme configuration is in CSS only
+- **No StyleSheet**: Use className exclusively
+- **Restart Metro**: After changing global.css or metro.config.js
+- **className deduplication**: Uniwind doesn't auto-dedupe classes - use `tailwind-merge` if needed
 
 ---
 
