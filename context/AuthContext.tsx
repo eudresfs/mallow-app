@@ -18,6 +18,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Only set up auth listener if Firebase is configured
+    if (!auth) {
+      setLoading(false);
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
@@ -26,18 +32,28 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const signInWithGoogle = async () => {
+    if (!auth) {
+      console.warn('Firebase is not configured. Cannot sign in.');
+      return;
+    }
+
     try {
       await GoogleSignin.hasPlayServices();
       const { idToken } = await GoogleSignin.signIn();
       const googleCredential = GoogleAuthProvider.credential(idToken);
       await signInWithCredential(auth, googleCredential);
-    } catch (error) { 
+    } catch (error) {
       console.error(error);
       // Handle error (e.g., show a toast message)
     }
   };
 
   const signOut = async () => {
+    if (!auth) {
+      console.warn('Firebase is not configured. Cannot sign out.');
+      return;
+    }
+
     try {
       await GoogleSignin.signOut();
       await auth.signOut();
